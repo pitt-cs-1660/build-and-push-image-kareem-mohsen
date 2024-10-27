@@ -2,7 +2,7 @@ on:
   push:
     branches:
       - main
-      - login-gcr.io # @note: use any development branch you would like
+      - login-gcr.io
 
 jobs:
   build-and-push-to-gcr:
@@ -11,35 +11,35 @@ jobs:
       contents: 'read'
       id-token: 'write'
     steps:
-      # Checkout code
+      # checkout code
       - uses: actions/checkout@v4
 
-      # Authenticate with GCP with workload identity provider
+      # authenticate with GCP with workload identity provider
       - uses: 'google-github-actions/auth@v2'
         id: auth
         name: Authenticate to GCP
         with:
-          project_id: 'global-student-436315-j5' # Your GCP Project ID
-          workload_identity_provider: 'projects/928069294238/locations/global/workloadIdentityPools/github/providers/my-repo' # Your Workload Identity Provider
+          project_id: 'global-student-436315-j5'
+          workload_identity_provider: 'projects/928069294238/locations/global/workloadIdentityPools/github/providers/my-repo'
 
-      # Configure/login with Docker
+      # configure/login with docker
       - name: gcloud Configure Docker
         run: gcloud auth configure-docker us-central1-docker.pkg.dev
 
-      # Setup Docker Buildx
+      # setup docker buildx
       - name: Setup docker buildx
         uses: docker/setup-buildx-action@v3
         with:
           platforms: linux/amd64,linux/arm64
 
-      # Build and Push
       - name: Build and Push
         uses: docker/build-push-action@v6
         with:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: us-central1-docker.pkg.dev/global-student-436315-j5/pitt-cs-1660/[IMAGE_NAME]:[TAG]
+          tags: us-central1-docker.pkg.dev/global-student-436315-j5/pitt-cs-1660/app-image:latest
+
 
 
 # @note: you can use regular docker commands instead of the shared action
