@@ -1,0 +1,5 @@
+TimeSeries ID,workload_identity_federation/count.iam.googleapis.com/WorkloadIdentityPoolProvider.ALIGN_RATE.REDUCE_SUM.metric.type="iam.googleapis.com/workload_identity_federation/count" metric.label."result"="success" resource.type="iam.googleapis.com/WorkloadIdentityPoolProvider" .pool_id:github.project_id:global-student-436315-j5
+pool_id,github
+project_id,global-student-436315-j5
+Sat Oct 26 2024 22:35:00 GMT-0400 (Eastern Daylight Time),0.013333333333333334
+Sat Oct 26 2024 22:40:00 GMT-0400 (Eastern Daylight Time),0.013333333333333334
